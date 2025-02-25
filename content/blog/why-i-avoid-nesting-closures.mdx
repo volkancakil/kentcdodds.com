@@ -1,8 +1,7 @@
 ---
 title: Why I avoid nesting closures
 date: 2019-12-13
-description:
-  A little tendency I have to reduce cognitive load for readers of my code.
+description: A little tendency I have to reduce cognitive load for readers of my code.
 categories:
   - programming
 meta:
@@ -19,22 +18,22 @@ https://egghead.io/lessons/javascript-reduce-cognitive-load-for-readers-of-your-
 If I come across code like this:
 
 ```js
-function getDisplayName({firstName, lastName}) {
-  const upperFirstCharacter = string =>
-    string.slice(0, 1).toUpperCase() + string.slice(1)
+function getDisplayName({ firstName, lastName }) {
+	const upperFirstCharacter = (string) =>
+		string.slice(0, 1).toUpperCase() + string.slice(1)
 
-  return `${upperFirstCharacter(firstName)} ${upperFirstCharacter(lastName)}`
+	return `${upperFirstCharacter(firstName)} ${upperFirstCharacter(lastName)}`
 }
 ```
 
 Chances are, I'll refactor it to this:
 
 ```js
-const upperFirstCharacter = string =>
-  string.slice(0, 1).toUpperCase() + string.slice(1)
+const upperFirstCharacter = (string) =>
+	string.slice(0, 1).toUpperCase() + string.slice(1)
 
-function getDisplayName({firstName, lastName}) {
-  return `${upperFirstCharacter(firstName)} ${upperFirstCharacter(lastName)}`
+function getDisplayName({ firstName, lastName }) {
+	return `${upperFirstCharacter(firstName)} ${upperFirstCharacter(lastName)}`
 }
 ```
 
@@ -84,8 +83,8 @@ variables. For example:
 
 ```js
 function addThings(additive, ...numbers) {
-  const add = n => n + additive
-  return numbers.map(add)
+	const add = (n) => n + additive
+	return numbers.map(add)
 }
 
 addThings(3, 1, 2, 3, 4)
@@ -100,11 +99,11 @@ code is simpler the way that it is now and I'll probably leave it as-is.
 
 I've had some conversations about this on twitter that have been interesting and
 I think the most interesting insight so far has been from a thread where
-[Lily Scott](https://twitter.com/suchipi) described
-[a side-effect](https://twitter.com/suchipi/status/1206061075587682304) which
-[Jed Fox](https://twitter.com/jed_fox1) summed up well in this tweet:
+[Lily Scott](https://x.com/suchipi) described
+[a side-effect](https://x.com/suchipi/status/1206061075587682304) which
+[Jed Fox](https://x.com/jed_fox1) summed up well in this tweet:
 
-https://twitter.com/jed_fox1/status/1206061752737320960
+https://x.com/jed_fox1/status/1206061752737320960
 
 So yes, this concept has nuance and there are trade-offs. I think I still prefer
 extracting things because most of the time my files are only a few hundred lines

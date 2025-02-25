@@ -1,20 +1,16 @@
 import * as React from 'react'
 
-const IconLink = React.forwardRef<
-  HTMLAnchorElement,
-  JSX.IntrinsicElements['a']
->(function IconLink(props, ref) {
-  return (
-    <a
-      {...props}
-      className={`${
-        props.className ?? ''
-      } text-primary focus:outline-none hover:text-team-current focus:text-team-current`}
-      ref={ref}
-    >
-      {props.children}
-    </a>
-  )
-})
+function IconLink(props: React.ComponentProps<'a'>) {
+	return (
+		<a
+			{...props}
+			className={`${
+				props.className ?? ''
+			} text-primary hover:text-team-current focus:text-team-current focus:outline-none`}
+		>
+			{props.children}
+		</a>
+	)
+}
 
-export {IconLink}
+export { IconLink }

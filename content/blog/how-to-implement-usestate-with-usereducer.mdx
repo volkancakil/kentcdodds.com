@@ -12,8 +12,7 @@ meta:
     - javascript
     - composability
 bannerCloudinaryId: unsplash/photo-1506591501018-9e93b4134ee6
-bannerCredit:
-  Photo by [Marc Sendra Martorell](https://unsplash.com/photos/7ajo0Vz98yU)
+bannerCredit: Photo by [Marc Sendra Martorell](https://unsplash.com/photos/7ajo0Vz98yU)
 ---
 
 **[Watch "Implement useState with useReducer" on egghead.io](https://egghead.io/lessons/react-implement-usestate-with-usereducer?pl=kent-s-blog-posts-as-screencasts-eefa540c)**
@@ -24,13 +23,13 @@ Here's the TL;DR:
 
 ```js
 const useStateReducer = (prevState, newState) =>
-  typeof newState === 'function' ? newState(prevState) : newState
+	typeof newState === 'function' ? newState(prevState) : newState
 
-const useStateInitializer = initialValue =>
-  typeof initialValue === 'function' ? initialValue() : initialValue
+const useStateInitializer = (initialValue) =>
+	typeof initialValue === 'function' ? initialValue() : initialValue
 
 function useState(initialValue) {
-  return React.useReducer(useStateReducer, initialValue, useStateInitializer)
+	return React.useReducer(useStateReducer, initialValue, useStateInitializer)
 }
 ```
 
@@ -68,8 +67,8 @@ useState(() => initialValue) // a lazy initial value
 ```
 
 <callout-info class="aside">
-  [Read more about lazy initial
-  state](https://reactjs.org/docs/hooks-reference.html#lazy-initial-state)
+	[Read more about lazy initial
+	state](https://reactjs.org/docs/hooks-reference.html#lazy-initial-state)
 </callout-info>
 
 So our new `useReducer`-based `useState` will need to support all of these
@@ -86,7 +85,7 @@ both of these variations.
 ```js
 const [state, setState] = useState()
 setState(newState)
-setState(previousState => newState)
+setState((previousState) => newState)
 ```
 
 This is similar to what `useReducer` does as well, except the mechanism for
@@ -108,7 +107,7 @@ serves as an argument to that initialization function, so you can rename that to
 something like `initialArg`.
 
 ```js
-const initializationFn = initialArg => initialArg
+const initializationFn = (initialArg) => initialArg
 
 const [state, dispatch] = useReducer(reducerFn, initialArg, initializationFn)
 ```
@@ -132,7 +131,7 @@ Here's our starting point:
 const useStateReducer = () => {}
 
 function useState() {
-  return React.useReducer(useStateReducer)
+	return React.useReducer(useStateReducer)
 }
 ```
 
@@ -148,21 +147,21 @@ setCount(count + 1)
 So we need to make the `dispatch` function actually update the state value. To
 do that, we make our reducer take the `dispatchArg` and return that.
 
-```js [1]
+```js lines=1
 const useStateReducer = (prevState, dispatchArg) => dispatchArg
 
 function useState() {
-  return React.useReducer(useStateReducer)
+	return React.useReducer(useStateReducer)
 }
 ```
 
 With that it actually makes more sense to call `dispatchArg` `newState` instead:
 
-```js [1]
+```js lines=1
 const useStateReducer = (prevState, newState) => newState
 
 function useState() {
-  return React.useReducer(useStateReducer)
+	return React.useReducer(useStateReducer)
 }
 ```
 
@@ -172,7 +171,7 @@ Great! Next, let's support the function update version of the `useState` API:
 
 ```js
 const [count, setCount] = useState(0)
-setCount(previousCount => previousCount + 1)
+setCount((previousCount) => previousCount + 1)
 ```
 
 If we want to continue to support the previous API, we'll need to do some
@@ -180,12 +179,12 @@ If we want to continue to support the previous API, we'll need to do some
 it with the previous state. Otherwise we'll just return it. Ternaries to the
 rescue!
 
-```js [1-2]
+```js lines=1-2
 const useStateReducer = (prevState, newState) =>
-  typeof newState === 'function' ? newState(prevState) : newState
+	typeof newState === 'function' ? newState(prevState) : newState
 
 function useState() {
-  return React.useReducer(useStateReducer)
+	return React.useReducer(useStateReducer)
 }
 ```
 
@@ -194,12 +193,12 @@ function useState() {
 Nice! Now let's move on to that initial value! For the simple `useState(0)`
 case, it's actually really straightforward:
 
-```js [4,5]
+```js lines=4,5
 const useStateReducer = (prevState, newState) =>
-  typeof newState === 'function' ? newState(prevState) : newState
+	typeof newState === 'function' ? newState(prevState) : newState
 
 function useState(initialValue) {
-  return React.useReducer(useStateReducer, initialValue)
+	return React.useReducer(useStateReducer, initialValue)
 }
 ```
 
@@ -208,14 +207,14 @@ little more tricky because the `useReducer` API is slightly different here.
 Let's iterate to that first. Here's another way we could implement the non-lazy
 `useState(0)` use case:
 
-```js [4,7]
+```js lines=4,7
 const useStateReducer = (prevState, newState) =>
-  typeof newState === 'function' ? newState(prevState) : newState
+	typeof newState === 'function' ? newState(prevState) : newState
 
-const useStateInitializer = initialArg => initialArg
+const useStateInitializer = (initialArg) => initialArg
 
 function useState(initialValue) {
-  return React.useReducer(useStateReducer, initialValue, useStateInitializer)
+	return React.useReducer(useStateReducer, initialValue, useStateInitializer)
 }
 ```
 
@@ -225,15 +224,15 @@ easier to support the lazy initializer version of the API. We simply need to
 determine whether the `initialArg` is a function and if it is, we'll call it,
 otherwise we'll return it.
 
-```js [5]
+```js lines=5
 const useStateReducer = (prevState, newState) =>
-  typeof newState === 'function' ? newState(prevState) : newState
+	typeof newState === 'function' ? newState(prevState) : newState
 
-const useStateInitializer = initialValue =>
-  typeof initialValue === 'function' ? initialValue() : initialValue
+const useStateInitializer = (initialValue) =>
+	typeof initialValue === 'function' ? initialValue() : initialValue
 
 function useState(initialValue) {
-  return React.useReducer(useStateReducer, initialValue, useStateInitializer)
+	return React.useReducer(useStateReducer, initialValue, useStateInitializer)
 }
 ```
 

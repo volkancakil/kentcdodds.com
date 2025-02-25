@@ -1,22 +1,23 @@
 // this is just here to test the error page
 
-import type {LoaderFunction} from '@remix-run/node'
-import type {KCDHandle} from '~/types'
-import {ServerError} from '~/components/errors'
+import { ServerError } from '#app/components/errors.tsx'
+import { type KCDHandle } from '#app/types.ts'
+import { useCapturedRouteError } from '#app/utils/misc.tsx'
 
 export const handle: KCDHandle = {
-  getSitemapEntries: () => null,
+	getSitemapEntries: () => null,
 }
 
-export const loader: LoaderFunction = async () => {
-  throw new Error('Oh no!')
+export async function loader() {
+	throw new Error('Oh no!')
 }
 
 export default function Screen() {
-  return <div>You should not see this</div>
+	return <div>You should not see this</div>
 }
 
-export function ErrorBoundary({error}: {error: Error}) {
-  console.error(error)
-  return <ServerError />
+export function ErrorBoundary() {
+	const error = useCapturedRouteError()
+	console.error(error)
+	return <ServerError />
 }

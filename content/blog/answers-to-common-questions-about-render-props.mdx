@@ -7,8 +7,7 @@ meta:
     - javascript
     - react
 bannerCloudinaryId: unsplash/photo-1516383074327-ac4841225abf
-bannerCredit:
-  Photo by [Sharon McCutcheon](https://unsplash.com/photos/gYxVSeZazXU)
+bannerCredit: Photo by [Sharon McCutcheon](https://unsplash.com/photos/gYxVSeZazXU)
 ---
 
 As I was preparing this article, I was getting ready to give a training to
@@ -18,14 +17,14 @@ and want to dive deeper into the Render Props pattern. (If you're unfamiliar
 with the Render Props pattern, I suggest you stop reading now and read
 ["Use a Render Prop"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)
 or watch ["Never Write Another HoC"](https://youtu.be/BcVAq3YFiuc) (both by the
-illustrious [Michael Jackson](https://twitter.com/mjackson)), then come back and
+illustrious [Michael Jackson](https://x.com/mjackson)), then come back and
 continue).
 
 In preparing for this training (in addition to
 [creating this](https://codesandbox.io/s/k2krnxml7r)),
-[I tweeted this question](https://twitter.com/kentcdodds/status/954508165076455424):
+[I tweeted this question](https://x.com/kentcdodds/status/954508165076455424):
 
-https://twitter.com/kentcdodds/status/954508165076455424
+https://x.com/kentcdodds/status/954508165076455424
 
 I got quite a few great responses and for today's newsletter I thought I'd share
 three of them and simple examples for the answer:
@@ -35,7 +34,7 @@ three of them and simple examples for the answer:
 This is by far the most common question I get whenever talking about Render
 Props (my tweet had several responses asking about performance). My answer to
 this question is simple: "That's a really common question. So I'm glad that
-[Ryan Florence](https://twitter.com/ryanflorence) answered it in a great blog
+[Ryan Florence](https://x.com/ryanflorence) answered it in a great blog
 post! Read
 ["React, Inline Functions, and Performance"](https://cdb.reacttraining.com/react-inline-functions-and-performance-bdff784f5578).
 "In summary" (to quote the article:
@@ -58,23 +57,23 @@ prop function and perf implications of that, then don't inline the function! :)
 
 ```tsx
 class MyComp extends React.Component {
-  renderDownshift = downshift => <div>{/* Your UI stuff here */}</div>
-  render() {
-    return <Downshift>{this.renderDownshift}</Downshift>
-  }
+	renderDownshift = (downshift) => <div>{/* Your UI stuff here */}</div>
+	render() {
+		return <Downshift>{this.renderDownshift}</Downshift>
+	}
 }
 ```
 
 ### Question 2: Messy Render!?
 
 The
-[not-a-link-posting-robot](https://twitter.com/acemarke/status/872207875812098048)
-[Mark Erikson](https://twitter.com/acemarke)
-[asked](https://twitter.com/acemarke/status/954519688968581123):
+[not-a-link-posting-robot](https://x.com/acemarke/status/872207875812098048)
+[Mark Erikson](https://x.com/acemarke)
+[asked](https://x.com/acemarke/status/954519688968581123):
 
-https://twitter.com/acemarke/status/954519688968581123
+https://x.com/acemarke/status/954519688968581123
 
-https://twitter.com/acemarke/status/954520099985219584
+https://x.com/acemarke/status/954520099985219584
 
 Mark is correct. Almost every render prop example I've seen also just shows all
 the logic in the render function. It's normally an implicit return and then one
@@ -89,30 +88,30 @@ smaller version of the concept:
 
 ```tsx
 function JustARegularFunctionComponent(props) {
-  // do whatever you want in here
-  return <div>{/* your stuff */}</div>
+	// do whatever you want in here
+	return <div>{/* your stuff */}</div>
 }
 
 function App() {
-  return (
-    <div>
-      <div>With a totally different component. Thanks React composibility!</div>
-      <RenderPropComp
-        render={arg => <JustARegularFunctionComponent {...arg} />}
-      />
-      <hr />
-      <div>
-        Inline! You don't have to make it an implicit return arrow function 😉
-      </div>
-      <RenderPropComp
-        render={arg => {
-          // <-- notice the curly brace!
-          // do whatever you want in here
-          return <div>{/* your stuff */}</div>
-        }}
-      />
-    </div>
-  )
+	return (
+		<div>
+			<div>With a totally different component. Thanks React composibility!</div>
+			<RenderPropComp
+				render={(arg) => <JustARegularFunctionComponent {...arg} />}
+			/>
+			<hr />
+			<div>
+				Inline! You don't have to make it an implicit return arrow function 😉
+			</div>
+			<RenderPropComp
+				render={(arg) => {
+					// <-- notice the curly brace!
+					// do whatever you want in here
+					return <div>{/* your stuff */}</div>
+				}}
+			/>
+		</div>
+	)
 }
 ```
 
@@ -130,38 +129,38 @@ component, and simply forward the arguments to the props of our component.
 
 ```tsx
 class RegularClassComponent extends React.Component {
-  componentDidUpdate() {
-    // here you are :)
-    console.log(this.props.whatever)
-  }
-  render() {
-    return <div>{/* your ui */}</div>
-  }
+	componentDidUpdate() {
+		// here you are :)
+		console.log(this.props.whatever)
+	}
+	render() {
+		return <div>{/* your ui */}</div>
+	}
 }
 
 function App() {
-  return <RenderPropComp render={arg => <RegularClassComponent {...arg} />} />
+	return <RenderPropComp render={(arg) => <RegularClassComponent {...arg} />} />
 }
 ```
 
-My friend [Donavon](https://twitter.com/donavon) would be sad if I didn't bring
+My friend [Donavon](https://x.com/donavon) would be sad if I didn't bring
 up his preferred pattern of
 [Component Injection](http://americanexpress.io/faccs-are-an-antipattern). With
 component injection you could do this even more cleanly:
 
 ```tsx
 class RegularClassComponent extends React.Component {
-  componentDidUpdate() {
-    // here you are :)
-    console.log(this.props.whatever)
-  }
-  render() {
-    return <div>{/* your ui */}</div>
-  }
+	componentDidUpdate() {
+		// here you are :)
+		console.log(this.props.whatever)
+	}
+	render() {
+		return <div>{/* your ui */}</div>
+	}
 }
 
 function App() {
-  return <CompInjectionComp component={RegularClassComponent} />
+	return <CompInjectionComp component={RegularClassComponent} />
 }
 ```
 
@@ -173,7 +172,7 @@ feet!
 ### Conclusion
 
 The render prop pattern is awesome. I'm looking forward to seeing more projects
-added to [Jared Palmer's](https://twitter.com/jaredpalmer)
+added to [Jared Palmer's](https://x.com/jaredpalmer)
 [`awesome-react-render-props`](https://github.com/jaredpalmer/awesome-react-render-props)!
 What I love about the Render Prop pattern is that it can encapsulate the logic
 of a component without sacrificing customizability and simplicity in the markup.

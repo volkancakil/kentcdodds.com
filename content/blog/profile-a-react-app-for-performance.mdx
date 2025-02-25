@@ -13,8 +13,7 @@ meta:
     - optimization
     - profile
 bannerCloudinaryId: unsplash/photo-1537210249814-b9a10a161ae4
-bannerCredit:
-  Photo by [Felix Mittermeier](https://unsplash.com/photos/L4-16dmZ-1c)
+bannerCredit: Photo by [Felix Mittermeier](https://unsplash.com/photos/L4-16dmZ-1c)
 ---
 
 [The React DevTools](https://github.com/facebook/react/tree/master/packages/react-devtools)
@@ -56,9 +55,9 @@ server running. This will pull up the app in your browser at
 ## Start a profiling session
 
 Open the browser developer tools by right clicking anywhere on the page and
-clicking "Inspect." Then select the "⚛ Profiler" tab. This is the React DevTools
-profiler and you can now click the little blue circle to "Start profiling" the
-application.
+clicking "Inspect." Then select the "⚛ Profiler" tab. This is the React
+DevTools profiler and you can now click the little blue circle to "Start
+profiling" the application.
 
 ![bookshelf app with React DevTools Profile tab open and blue "Start profile" button highlighted](https://res.cloudinary.com/kentcdodds-com/image/upload/v1625033216/kentcdodds.com/content/blog/profile-a-react-app-for-performance/2.png)
 
@@ -152,7 +151,7 @@ can open the webpack config here:
 
 Then locate the code that looks like this and add the noted lines:
 
-```js [8-9]
+```js lines=8-9
 // ... config ...
 resolve: {
   // ... config ...
@@ -194,14 +193,14 @@ component:
 
 ```js
 function AwesomeAppComponent() {
-  return <div>Awesome</div>
+	return <div>Awesome</div>
 }
 console.log(AwesomeAppComponent.name) // <-- logs "AwesomeAppComponent"
 
 class LessAwesomeAppComponent extends React.Component {
-  render() {
-    return <div>Less Awesome</div>
-  }
+	render() {
+		return <div>Less Awesome</div>
+	}
 }
 console.log(LessAwesomeAppComponent.name) // <-- logs "LessAwesomeAppComponent"
 ```
@@ -213,14 +212,14 @@ performance:
 
 ```js
 function a() {
-  return <div>Awesome</div>
+	return <div>Awesome</div>
 }
 console.log(a.name) // <-- logs "a"
 
 class b extends React.Component {
-  render() {
-    return <div>Less Awesome</div>
-  }
+	render() {
+		return <div>Less Awesome</div>
+	}
 }
 console.log(b.name) // <-- logs "b"
 ```
@@ -236,19 +235,19 @@ preserve the function and class names.
 So in that same webpack configuration file, scroll down to where the plugin is
 configured and modify it like this:
 
-```js [8-9]
+```js lines=8-9
 // ... some config ...
 new TerserPlugin({
-  terserOptions: {
-    // ... some other config ...
-    mangle: {
-      safari10: true,
-    },
-    keep_classnames: true,
-    keep_fnames: true,
-    // ... some more config ...
-  },
-  // ... even more config ...
+	terserOptions: {
+		// ... some other config ...
+		mangle: {
+			safari10: true,
+		},
+		keep_classnames: true,
+		keep_fnames: true,
+		// ... some more config ...
+	},
+	// ... even more config ...
 })
 ```
 

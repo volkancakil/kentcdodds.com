@@ -1,8 +1,7 @@
 ---
 title: Improving the usability of your modules
 date: 2017-11-06
-description:
-  How to make your modules more generically useful and easier to test.
+description: How to make your modules more generically useful and easier to test.
 meta:
   keywords:
     - javascript
@@ -55,12 +54,12 @@ import getContentForFile from 'react-i18n'
 const i18n = getContentForFile('pages/home')
 
 function App() {
-  return (
-    <div>
-      <h1>{i18n('header.title')}</h1>
-      <div>{i18n('header.subtitle')}</div>
-    </div>
-  )
+	return (
+		<div>
+			<h1>{i18n('header.title')}</h1>
+			<div>{i18n('header.subtitle')}</div>
+		</div>
+	)
 }
 ```
 
@@ -88,7 +87,7 @@ module. For example:
 // side-effect!
 const content = JSON.parse(document.getElementById('react-messages'))
 // ... more stuff
-export {getContentForFile as default, init}
+export { getContentForFile as default, init }
 ```
 
 This presents a few challenges for users of the module. It means that **they
@@ -99,7 +98,7 @@ environment, but also in the test environment! And unless you take care to give
 good warnings when the environment isn't ready (if you even know), people will
 get cryptic error messages when doing seemingly unrelated tasks (like importing
 some module that happens to import your module somewhere in the
-[dependency graph](https://twitter.com/kentcdodds/status/922114804038303745)).
+[dependency graph](https://x.com/kentcdodds/status/922114804038303745)).
 
 Another issue is that there could be a reason to **configure the initialization
 process**. What if my node doesn't have the id `react-messages`, but instead
@@ -116,13 +115,13 @@ So what I did was a wrapped all side-effects in a function I exported called
 // react-i18n/index.js
 // ... stuff
 function init(options) {
-  // ... other stuff
-  // side-effect! But it's ok now because that's clear
-  const messages = JSON.parse(document.getElementById('react-messages'))
-  // ... other other stuff
+	// ... other stuff
+	// side-effect! But it's ok now because that's clear
+	const messages = JSON.parse(document.getElementById('react-messages'))
+	// ... other other stuff
 }
 // ... more stuff
-export {getContentForFile as default, init}
+export { getContentForFile as default, init }
 ```
 
 So this means that anyone using the module now _must_ call the `init` function,

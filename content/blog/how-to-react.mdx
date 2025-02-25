@@ -1,8 +1,7 @@
 ---
 title: How to React ⚛️
 date: 2021-11-03
-description:
-  Let's see how learning React ⚛️ in the right order can make it less
+description: Let's see how learning React ⚛️ in the right order can make it less
   overwhelming.
 translations:
   - language: Español
@@ -31,23 +30,23 @@ from [youmightnotneedjquery.com](http://youmightnotneedjquery.com):
 // $(el).toggleClass(className);
 
 function toggleClass(el, className) {
-  if (el.classList) {
-    el.classList.toggle(className)
-  } else {
-    var classes = el.className.split(' ')
-    var existingIndex = -1
-    for (var i = classes.length; i--; ) {
-      if (classes[i] === className) existingIndex = i
-    }
+	if (el.classList) {
+		el.classList.toggle(className)
+	} else {
+		var classes = el.className.split(' ')
+		var existingIndex = -1
+		for (var i = classes.length; i--; ) {
+			if (classes[i] === className) existingIndex = i
+		}
 
-    if (existingIndex >= 0) {
-      classes.splice(existingIndex, 1)
-    } else {
-      classes.push(className)
-    }
+		if (existingIndex >= 0) {
+			classes.splice(existingIndex, 1)
+		} else {
+			classes.push(className)
+		}
 
-    el.className = classes.join(' ')
-  }
+		el.className = classes.join(' ')
+	}
 }
 ```
 
@@ -58,7 +57,7 @@ you can actually change that to:
 // $(el).toggleClass(className)
 
 function toggleClass(el, className) {
-  el.classList.toggle(className)
+	el.classList.toggle(className)
 }
 ```
 
@@ -83,10 +82,10 @@ overwhelmed by too much to learn at once and using abstractions effectively.
 For more on this, check out [AHA Programming 💡](/blog/aha-programming).
 
 <callout-info>
-  Side note... Want to just play around with stuff? Want to just ship stuff?
-  That's totally cool. Just recognize you don't know the trade-offs and that
-  could bite you in the future. If the future doesn't matter that much then
-  don't worry about it!
+	Side note... Want to just play around with stuff? Want to just ship stuff?
+	That's totally cool. Just recognize you don't know the trade-offs and that
+	could bite you in the future. If the future doesn't matter that much then
+	don't worry about it!
 </callout-info>
 
 ## Start with JavaScript + Modern JS
@@ -99,7 +98,7 @@ JavaScript well. For this, I suggest reading my blog post
 ["JavaScript to Know for React"](/blog/javascript-to-know-for-react). Also check
 out [JavaScript30.com](https://javascript30.com) (totally free) and
 [BeginnerJavaScript.com](https://beginnerjavascript.com/) (not free) both by
-[Wes Bos](https://twitter.com/wesbos).
+[Wes Bos](https://x.com/wesbos).
 
 In addition, knowing modern JavaScript features will go a long way. Because JSX
 (more on this later) requires a compiler, most React developers take modern
@@ -196,8 +195,8 @@ then I suggest you give my blog post
 a read through.
 
 <callout-info class="aside">
-  TL;DR: React is an Application State Management library and you don't need
-  Redux
+	TL;DR: React is an Application State Management library and you don't need
+	Redux
 </callout-info>
 
 ## Component Styling
@@ -223,7 +222,7 @@ information (but you can get a more up-to-date version of this content on
 ## Conclusion
 
 I hope that this gives you
-([and your friends](https://twitter.com/intent/tweet?url=https%3A%2F%2Fkentcdodds.com%2Fblog%2Fhow-to-react&text=How%20to%20React%20%E2%9A%9B%EF%B8%8F&via=kentcdodds))
+([and your friends](https://x.com/intent/post?url=https%3A%2F%2Fkentcdodds.com%2Fblog%2Fhow-to-react&text=How%20to%20React%20%E2%9A%9B%EF%B8%8F&via=kentcdodds))
 a path for how to learn react as well as where to start when building React
 applications. Adding abstractions to your application too early makes them less
 flexible, so I would generally follow this pattern when building apps as well.

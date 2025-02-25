@@ -7,8 +7,7 @@ meta:
     - javascript
     - Polyfill
 bannerCloudinaryId: unsplash/photo-1513735429658-5b2072a1cee6
-bannerCredit:
-  Photo by [Everaldo Coelho](https://unsplash.com/photos/2GW4S08kd-8)
+bannerCredit: Photo by [Everaldo Coelho](https://unsplash.com/photos/2GW4S08kd-8)
 ---
 
 A few weeks back I found a bug with IE where all the user saw was a blank white
@@ -36,9 +35,9 @@ JavaScript is constantly evolving thanks to the efforts of people in and around
 which allows me to do this:
 
 ```js
-const addOne = num => num + 1
+const addOne = (num) => num + 1
 if (addOne(2) > 2) {
-  console.log('Math. Wow!')
+	console.log('Math. Wow!')
 }
 ```
 
@@ -53,7 +52,7 @@ Some other of these new features rely on new APIs, like
 ```js
 const contacts = ['Brooke', 'Becca', 'Nathan', 'Adam', 'Michael']
 if (contacts.includes('Rachel')) {
-  console.log('You have a Rachel!')
+	console.log('You have a Rachel!')
 }
 ```
 
@@ -62,7 +61,7 @@ With these, if you
 the `includes` function is not transpiled because it's not a syntax issue, but a
 built-in API one and babel's env preset only includes transforms for syntax
 transformations. You _could_
-[write your own babel plugin](/talks/#writing-custom-babel-and-eslint-plugins-with-asts)
+[write your own babel plugin](talks/writing-custom-babel-and-es-lint-plugins-with-asts)
 ([like this](https://astexplorer.net/#/gist/538b72e2af148a14d7c0f5824b431cd6/47a57f42697199d6cfa1d4b1027951ef170a980e))
 to transform the code, but for _some_ APIs it just wouldn't be practical because
 the transformed version would be significantly complex.
@@ -75,9 +74,9 @@ for a real polyfill):
 
 ```js
 if (!Array.prototype.includes) {
-  Array.prototype.includes = function includes(searchElement) {
-    return this.indexOf(searchElement) !== -1
-  }
+	Array.prototype.includes = function includes(searchElement) {
+		return this.indexOf(searchElement) !== -1
+	}
 }
 ```
 

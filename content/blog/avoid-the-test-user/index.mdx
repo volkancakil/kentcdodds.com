@@ -1,8 +1,7 @@
 ---
 title: Avoid the Test User
 date: 2019-05-24
-description:
-  How your UI code has only two users, but the wrong tests can add a third
+description: How your UI code has only two users, but the wrong tests can add a third
 categories:
   - testing
 meta:
@@ -11,8 +10,7 @@ meta:
     - javascript
     - react
 bannerCloudinaryId: unsplash/photo-1497138169556-ba5743a6031c
-bannerCredit:
-  Photo by [Genevieve Perron-Migneron](https://unsplash.com/photos/vXZ_lC0XN4c)
+bannerCredit: Photo by [Genevieve Perron-Migneron](https://unsplash.com/photos/vXZ_lC0XN4c)
 ---
 
 import UserProfileExample from './user-profile-example'
@@ -20,15 +18,15 @@ import UserProfileExample from './user-profile-example'
 The two users your UI code has are 1) The end user that's interacting with your
 component and 2) the developer rendering your component. Imagine you have the
 following UI (taken from my
-[Advanced React Patterns](/workshops/advanced-react-patterns) material):
+[Advanced React Patterns](https://epicreact.dev/patterns) material):
 
-<div style={{maxWidth: 300, margin: '10px auto 40px auto'}}>
-  <UserProfileExample />
+<div style={{ maxWidth: 300, margin: '10px auto 40px auto' }}>
+	<UserProfileExample />
 </div>
 
 <callout-info class="aside">
-  Note: this is not a screenshot. You can actually interact with that form.
-  Hooray for [MDX](https://mdxjs.com)!
+	Note: this is not a screenshot. You can actually interact with that form.
+	Hooray for [MDX](https://mdxjs.com)!
 </callout-info>
 
 The form component here is called `<UserSettings />`. This component exposes a
@@ -66,7 +64,7 @@ is needed.
 ## The Test User
 
 So what does this have to do with testing? One thing that I talk about a lot is
-"[The more your tests resemble the way your software is used, the more confidence they can give you.](https://twitter.com/kentcdodds/status/977018512689455106) "
+"[The more your tests resemble the way your software is used, the more confidence they can give you.](https://x.com/kentcdodds/status/977018512689455106) "
 So knowing how your software is used is really valuable. It gives you a guide
 for knowing how to test the component.
 

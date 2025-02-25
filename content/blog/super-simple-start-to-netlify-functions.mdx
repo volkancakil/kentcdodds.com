@@ -1,8 +1,7 @@
 ---
 title: Super simple start to Netlify functions
 date: 2020-11-11
-description:
-  Easily create server code without worrying about managing servers yourself
+description: Easily create server code without worrying about managing servers yourself
 categories:
   - node
 meta:
@@ -61,7 +60,7 @@ Luckily for us, almost exactly one year ago from the time I'm writing this,
 Netlify took the complexity of AWS Lambda functions and made it super simple (I
 think it's what they do best):
 
-https://twitter.com/netlify/status/976126036491386880
+https://x.com/netlify/status/976126036491386880
 
 I want to give you a really quick intro to using Netlify to deploy server code
 in a way that is mind-blowingly straightforward to me.
@@ -92,12 +91,12 @@ Now that we've told Netlify where to find our functions files, let's make one:
 
 ```js
 // functions/hello.js
-exports.handler = async event => {
-  const subject = event.queryStringParameters.name || 'World'
-  return {
-    statusCode: 200,
-    body: `Hello ${subject}!`,
-  }
+exports.handler = async (event) => {
+	const subject = event.queryStringParameters.name || 'World'
+	return {
+		statusCode: 200,
+		body: `Hello ${subject}!`,
+	}
 }
 ```
 

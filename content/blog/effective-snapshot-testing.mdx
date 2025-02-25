@@ -10,14 +10,13 @@ meta:
     - testing
     - jest
 bannerCloudinaryId: unsplash/photo-1453728013993-6d66e9c9123a
-bannerCredit:
-  Photo by [Paul Skorupskas](https://unsplash.com/photos/7KLa-xLbSXA)
+bannerCredit: Photo by [Paul Skorupskas](https://unsplash.com/photos/7KLa-xLbSXA)
 ---
 
 I guess I've been on a bit of a testing kick recently, I promise this newsletter
 will delve into more stuff later. But I saw
-[this tweet](https://twitter.com/searls/status/919594505938112512) from
-[Justin Searls](https://twitter.com/searls) (a developer who I admire with a
+[this tweet](https://x.com/searls/status/919594505938112512) from
+[Justin Searls](https://x.com/searls) (a developer who I admire with a
 great deal of experience in testing) and thought it would be a great subject to
 write about.
 
@@ -246,7 +245,7 @@ expect.addSnapshotSerializer({
 There are a bunch of things you can do with custom serializers. I highly suggest
 the talk
 ["Jest Snapshots and Beyond"](https://youtu.be/HAuXJVI_bUs?list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0)
-from [Rogelio Guzman](https://twitter.com/rogeliog) at React Conf 2017 where he
+from [Rogelio Guzman](https://x.com/rogeliog) at React Conf 2017 where he
 talks about this more.
 
 ### [`snapshot-diff`](https://github.com/jest-community/snapshot-diff)
@@ -268,15 +267,15 @@ for you:
 
 ```tsx
 const React = require('react')
-const {toMatchDiffSnapshot} = require('snapshot-diff')
+const { toMatchDiffSnapshot } = require('snapshot-diff')
 const Component = require('./Component')
 
-expect.extend({toMatchDiffSnapshot})
+expect.extend({ toMatchDiffSnapshot })
 
 test('snapshot difference between 2 React components state', () => {
-  expect(<Component test="say" />).toMatchDiffSnapshot(
-    <Component test="my name" />,
-  )
+	expect(<Component test="say" />).toMatchDiffSnapshot(
+		<Component test="my name" />,
+	)
 })
 ```
 

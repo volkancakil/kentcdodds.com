@@ -1,22 +1,20 @@
 ---
 title: The Merits of Mocking
 date: 2018-11-05
-description:
-  What are you doing when you mock something, and when is it worth the cost?
+description: What are you doing when you mock something, and when is it worth the cost?
 meta:
   keywords:
     - javascript
     - testing
 bannerCloudinaryId: unsplash/photo-1541364983171-a8ba01e95cfc
-bannerCredit:
-  Photo by [Charles Deluvio 🇵🇭🇨🇦](https://unsplash.com/photos/pOUA8Xay514)
+bannerCredit: Photo by [Charles Deluvio 🇵🇭🇨🇦](https://unsplash.com/photos/pOUA8Xay514)
 ---
 
 > The more your tests resemble the way your software is used, the more
 > confidence they can give you. 
-> — [me](https://twitter.com/kentcdodds/status/977018512689455106)
+> — [me](https://x.com/kentcdodds/status/977018512689455106)
 
-[One of the biggest challenges people face with testing is knowing what to test](https://twitter.com/kentcdodds/status/1048645068616163328).
+[One of the biggest challenges people face with testing is knowing what to test](https://x.com/kentcdodds/status/1048645068616163328).
 There are lots of reasons for that, but one big, flashing-lights reason is
 mocking. Many people don't know when to add a mock version of code or have their
 test run the actual code directly. These are challenges I'll help you work
@@ -67,22 +65,22 @@ inline mock functionality in pure node:
 
 ```js
 function fn(impl = () => {}) {
-  const mockFn = (...args) => {
-    mockFn.mock.calls.push(args)
-    return impl(...args)
-  }
-  mockFn.mock = {calls: []}
-  return mockFn
+	const mockFn = (...args) => {
+		mockFn.mock.calls.push(args)
+		return impl(...args)
+	}
+	mockFn.mock = { calls: [] }
+	return mockFn
 }
 
-const utilsPath = require.resolve('~/utils')
+const utilsPath = require.resolve('#app/utils')
 require.cache[utilsPath] = {
-  id: utilsPath,
-  filename: utilsPath,
-  loaded: true,
-  exports: {
-    getWinner: fn((p1, p2) => p1),
-  },
+	id: utilsPath,
+	filename: utilsPath,
+	loaded: true,
+	exports: {
+		getWinner: fn((p1, p2) => p1),
+	},
 }
 ```
 

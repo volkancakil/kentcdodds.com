@@ -1,8 +1,7 @@
 ---
 title: Make your own DevTools
 date: 2020-02-17
-description:
-  How creating DevTools specific for your own app can improve your productivity
+description: How creating DevTools specific for your own app can improve your productivity
 categories:
   - productivity
 meta:
@@ -11,8 +10,7 @@ meta:
     - javascript
     - utilities
 bannerCloudinaryId: unsplash/photo-1453806839674-d1a9087ca1ed
-bannerCredit:
-  Photo by [Philip Swinburn](https://unsplash.com/photos/vS7LVkPyXJU)
+bannerCredit: Photo by [Philip Swinburn](https://unsplash.com/photos/vS7LVkPyXJU)
 ---
 
 **[Watch "Create App DevTools to enhance development productivity" on egghead.io](https://egghead.io/lessons/javascript-create-app-devtools-to-enhance-development-productivity?pl=kent-s-blog-posts-as-screencasts-eefa540c)**
@@ -53,7 +51,7 @@ that App DevTools enable you to do just about anything.
 
 If you don't want to play around with it yourself, here's what that looks like:
 
-https://twitter.com/kentcdodds/status/1229781024604708865
+https://x.com/kentcdodds/status/1229781024604708865
 
 Here's the basic idea:
 
@@ -70,7 +68,7 @@ import App from './App'
 // is called synchronously so there's no penalty for including this
 // in production.
 loadDevTools(() => {
-  ReactDOM.render(<App />, document.getElementById('root'))
+	ReactDOM.render(<App />, document.getElementById('root'))
 })
 ```
 
@@ -78,31 +76,31 @@ And then:
 
 ```js filename=src/dev-tools/load.js
 function loadDevTools(callback) {
-  // this allows you to explicitly disable it in development for example
-  const explicitlyDisabled =
-    window.location.search.includes('dev-tools=false') ||
-    window.localStorage.getItem('dev-tools') === 'false'
+	// this allows you to explicitly disable it in development for example
+	const explicitlyDisabled =
+		window.location.search.includes('dev-tools=false') ||
+		window.localStorage.getItem('dev-tools') === 'false'
 
-  const explicitlyEnabled =
-    window.location.search.includes('dev-tools=true') ||
-    window.localStorage.getItem('dev-tools') === 'true'
+	const explicitlyEnabled =
+		window.location.search.includes('dev-tools=true') ||
+		window.localStorage.getItem('dev-tools') === 'true'
 
-  // we want it enabled by default everywhere but production and we also want
-  // to support the dev tools in production (to make us more productive triaging production issues).
-  // you can enable the DevTools via localStorage or the query string.
-  if (
-    !explicitlyDisabled &&
-    (process.env.NODE_ENV === 'development' || explicitlyEnabled)
-  ) {
-    // use a dynamic import so the dev-tools code isn't bundled with the regular
-    // app code so we don't worry about bundle size.
-    import('./dev-tools')
-      .then(devTools => devTools.install())
-      .finally(callback)
-  } else {
-    // if we don't need the DevTools, call the callback immediately.
-    callback()
-  }
+	// we want it enabled by default everywhere but production and we also want
+	// to support the dev tools in production (to make us more productive triaging production issues).
+	// you can enable the DevTools via localStorage or the query string.
+	if (
+		!explicitlyDisabled &&
+		(process.env.NODE_ENV === 'development' || explicitlyEnabled)
+	) {
+		// use a dynamic import so the dev-tools code isn't bundled with the regular
+		// app code so we don't worry about bundle size.
+		import('./dev-tools')
+			.then((devTools) => devTools.install())
+			.finally(callback)
+	} else {
+		// if we don't need the DevTools, call the callback immediately.
+		callback()
+	}
 }
 
 export default loadDevTools
@@ -132,16 +130,16 @@ the races:
 import * as React from 'react'
 
 function install() {
-  function DevTools() {
-    return <div>Hi from the DevTools</div>
-  }
-  // add dev tools UI to the page
-  const devToolsRoot = document.createElement('div')
-  document.body.appendChild(devToolsRoot)
-  ReactDOM.render(<DevTools />, devToolsRoot)
+	function DevTools() {
+		return <div>Hi from the DevTools</div>
+	}
+	// add dev tools UI to the page
+	const devToolsRoot = document.createElement('div')
+	document.body.appendChild(devToolsRoot)
+	ReactDOM.render(<DevTools />, devToolsRoot)
 }
 
-export {install}
+export { install }
 ```
 
 You can check out
@@ -159,17 +157,17 @@ really helpful. So in the App DevTools script we have something like this:
 
 ```js
 // load local dev tools if it's there
-// NOTE: this is using some webpack-sepecific features.
+// NOTE: this is using some webpack-specific features.
 // if you're not using webpack, you might consider using
 // https://npm.im/preval.macro or https://npm.im/codegen.macro
 const requireDevToolsLocal = require.context(
-  './',
-  false,
-  /dev-tools\.local\.js/,
+	'./',
+	false,
+	/dev-tools\.local\.js/,
 )
 const local = requireDevToolsLocal.keys()[0]
 if (local) {
-  requireDevToolsLocal(local).default
+	requireDevToolsLocal(local).default
 }
 ```
 

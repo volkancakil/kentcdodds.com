@@ -20,11 +20,11 @@ bannerCredit: Photo by [Daniel Wallace](https://unsplash.com/photos/IliTEyruu7U)
 ---
 
 <callout-danger>
-  This post is here for historical reasons. Please read [an updated version of
-  this blog post with React
-  Hooks](/blog/the-state-reducer-pattern-with-react-hooks)! You may also be
-  interested in the more general concept of ["Inversion of
-  Control"](/blog/inversion-of-control).
+	This post is here for historical reasons. Please read [an updated version of
+	this blog post with React
+	Hooks](/blog/the-state-reducer-pattern-with-react-hooks)! You may also be
+	interested in the more general concept of ["Inversion of
+	Control"](/blog/inversion-of-control).
 </callout-danger>
 
 This last week, [@notruth](https://github.com/notruth) (new code contributor to
@@ -108,7 +108,7 @@ So, @notruth opened
 the `modifyStateChange`. After considering it a little further, I decided that
 this could be generalized into a pattern that could be really useful for other
 libraries. Patterns are much easier to evangelize when they have a name, so
-[I looked for one](https://twitter.com/kentcdodds/status/958707800292470784). 🕵️
+[I looked for one](https://x.com/kentcdodds/status/958707800292470784). 🕵️
 
 ### Introducing the state reducer pattern
 
@@ -135,17 +135,17 @@ that prevents the menu from closing after the user selects an item. Here's the
 import Downshift from 'downshift'
 
 function stateReducer(state, changes) {
-  switch (changes.type) {
-    case Downshift.stateChangeTypes.keyDownEnter:
-    case Downshift.stateChangeTypes.clickItem:
-      return {
-        ...changes,
-        isOpen: state.isOpen,
-        highlightedIndex: state.highlightedIndex,
-      }
-    default:
-      return changes
-  }
+	switch (changes.type) {
+		case Downshift.stateChangeTypes.keyDownEnter:
+		case Downshift.stateChangeTypes.clickItem:
+			return {
+				...changes,
+				isOpen: state.isOpen,
+				highlightedIndex: state.highlightedIndex,
+			}
+		default:
+			return changes
+	}
 }
 ```
 

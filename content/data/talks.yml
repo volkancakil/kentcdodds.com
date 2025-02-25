@@ -1,18 +1,198 @@
-- title: DevWorld Keynote
+- title: Code Europe 2025 Talk
   deliveries:
-    - event: '[Dev World 2023](https://devworldconference.com/)'
-      date: 2023-09-28
+    - event: '[Code Europe](https://www.codeeurope.pl/en/)'
+      date: 2025-06-30
+  tags:
+    - react
+  description: >-
+    To be announced.
+
+- title: Principles-Based Programming
+  deliveries:
+    - event: '[Devoxx Greece](https://devoxx.gr/)'
+      date: 2025-04-11
+    - event: '[React Paris](https://react.paris/)'
+      date: 2025-03-20
+    - event: '[CityJS London](https://london.cityjsconf.org/)'
+      date: 2025-04-23
+  tags:
+    - principles
+    - life
+    - career
+  description: >-
+    Programming is often thought of as a purely technical endeavor—writing code
+    to solve specific problems. But what if there’s a deeper, more meaningful
+    way to approach it? Principles-Based Programming explores the foundational
+    philosophies that guide our decisions as developers. Using The Epic
+    Programming Principles as a starting point, this talk dives into what
+    principles are, why they matter, and how embracing them can transform the
+    way you think about and write code.
+
+
+    Attendees will leave with an understanding of how principles provide a
+    compass for navigating the complexities of software development. They’ll be
+    inspired to not only consider the principles shared but also craft their own
+    to guide their personal or team development processes.
+
+- title: RenderATL 2025 Talk
+  deliveries:
+    - event: '[Render ATL](https://www.renderatl.com/)'
+      date: 2025-06-11
+  tags:
+    - react
+  description: >-
+    To be announced.
+
+- title: Epic Web Conf 2025 Talk
+  deliveries:
+    - event: '[Epic Web Conf](https://epicweb.dev/conf/2025)'
+      date: 2025-03-25
+  tags:
+    - react
+  description: >-
+    To be announced.
+
+- title: Stop Lying to your Users
+  deliveries:
+    - event: '[WebStep](https://webstep.se/)'
+      date: 2024-02-21
+    - event: '[React Miami 2024](https://www.reactmiami.com/)'
+      recording: https://www.youtube.com/watch?v=bAqtQtZ0Su0&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+      date: 2024-04-19
+    - event: '[Frontend Nation 2024](https://frontendnation.com/)'
+      date: 2024-06-04
+      recording: https://www.youtube.com/watch?v=iB9rucE1LVk&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+  tags:
+    - meetup
+    - web
+    - performance
+  description: >-
+    Chances are your app is lying to your users. I know you don't mean it.
+    Building truthful apps is hard. But you've been lied to by so many other
+    apps you use and it is extremely frustrating. This frustration not only
+    makes everyone's day worse, but it also makes users get out of that app as
+    quickly as possible which for most apps is bad for the bottom line.
+
+
+    So what's the lie? Well you'll have to come to the talk to find out! Don't
+    worry though, I'll not only explain to you what the lie is, but I'll also
+    show you how to correct it and delight your users in a way that moves the
+    needle.
+
+- title: 'Abracadabra: The Vanishing Network'
+  deliveries:
+    - event: '[React Universe](https://www.reactuniverseconf.com)'
+      date: 2024-09-05
+      recording: https://www.youtube.com/watch?v=E8LLty9rTWw&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+    - event: '[React India](https://www.reactindia.io/)'
+      date: 2024-10-18
+    - event: '[React Summit US 2024](https://reactsummit.us/)'
+      date: 2024-11-20
   tags:
     - keynote
+    - react
   description: >-
-    This talk will be announced soon!
+    The network that stands between our server and the client is what causes the
+    most complexity in our development process. Whether it be the initial UI we
+    generate on the server, the API calls we make as the user navigates around,
+    or the form submissions our user makes, keeping the application responsive
+    and up-to-date is a massive chore.
+
+
+    What would it be like if all of that complexity just disappeared? Freaking
+    great, that's what it would be like. And React Server Components and Actions
+    are what's making that possible. In this talk we'll look into how that's
+    happening and how we can take advantage of this amazing developer experience
+    to deliver even better user experiences.
+
+- title: How to be an Epic Web Dev
+  deliveries:
+    - event:
+        '[THAT Conf
+        Wisconsin](https://feature.thatconference.com/activities/dM2bzsGT3z8NVO8L1KFD)'
+      date: 2024-07-29
+      recording: 'https://www.youtube.com/live/C_E4xghf-8Y?t=1287s&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf'
+  tags:
+    - keynote
+    - personal
+  description: >-
+    In this Keynote, Kent C. Dodds will share key takeaways from his life
+    experience that enabled him to have an extraordinary industry impact and
+    success. You do not want to miss these key insights. Prepare to take notes
+    and find ways to apply his life lessons to your own life.
+
+- title: And Now You Understand React Server Components
+  deliveries:
+    - event: '[React Conf](https://conf.react.dev/)'
+      date: 2024-05-16
+      recording: https://www.youtube.com/watch?v=7D3AnL0Sehg&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+    - event: '[React Rally](https://reactrally.com/)'
+      date: 2024-06-14
+    - event: '[React Summit 2024](https://reactsummit.com)'
+      date: 2024-06-14
+    - event: '[UtahJS Conf](https://utahjs.com/conference)'
+      date: 2024-09-13
+  tags:
+    - web
+  description: >-
+    You want to keep up with the future of React. React has evolved over the
+    years and continues to push the component model further and further. Out of
+    all the evolutions of React, server components are certainly the biggest
+    advancement. It expands the component model further than ever before and as
+    a result, requires some rethinking. Seasoned React developers need to
+    unlearn the way we used to do things to be able to understand the
+    improvements that React Server Components offer.
+
+
+    In this talk, Kent will guide you through React Server Components start to
+    finish so you can understand how React Server Components work and set you
+    off on your journey into the future of components everywhere!
+
+- title: What Makes the Web Epic
+  deliveries:
+    - event: '[Epic Web Conf](https://epicweb.dev/conf/2024)'
+      recording: https://www.epicweb.dev/talks/what-makes-the-web-epic
+      date: 2024-04-11
+  tags:
+    - keynote
+    - web
+  description: >-
+    The web is a special platform. It's different from anything else you can
+    build on as a result of its openness and freedom from a central authority.
+    It's about collaboration and cooperation. As a result, there's a degree of
+    freedom we have on the web despite its weaknesses.
+
+
+    In this talk, I want to explain why you should double-down your investment
+    in web technologies in your own career and company offerings. If you do, we
+    can keep the web epic for many years to come.
+
+- title: React Router + Vite is a framework
+  resources:
+    - '[slides & demo](https://stackblitz.com/github/kentcdodds/viteconf-2023)'
+  deliveries:
+    - event: '[Vite Conf](https://viteconf.org/23/)'
+      recording: https://www.youtube.com/watch?v=rPjj6s7VPQM&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+      date: 2023-10-05
+  tags:
+    - react
+    - vite
+    - react router
+  description: >-
+    I once [posted](https://x.com/kentcdodds/status/1678762503420153857): "React
+    Router + Vite is a framework". In this talk I'll explain what I mean. We'll
+    talk about a couple different ways you can define "framework" and where the
+    "React Router + Vite" combo fits in complete with an example you can poke
+    around at.
 
 - title: Making Felix Felicis
+  resources:
+    - '[slides](https://slides.com/kentcdodds/making-felix-felicis)'
   deliveries:
+    - event: 'BYU Guest Lecture'
+      date: 2024-04-15
     - event: '[JSDays Canarias](https://jsdaycanarias.com/)'
       date: 2023-05-27
-    - event: '[Front Conf](https://frontconference.com/)'
-      date: 2023-08-31
   tags:
     - keynote
     - career
@@ -26,12 +206,19 @@
     I hope it can help you make yours. Don't forget to bring your spell book!
 
 - title: Caching for Cash 🤑
+  resources:
+    - '[slides](https://slides.com/kentcdodds/caching-for-cash)'
   deliveries:
+    - event: '[EpicWeb.dev special recording](https://www.epicweb.dev/talks)'
+      date: 2023-10-21
+      recording: https://www.epicweb.dev/talks/caching-for-cash
     - event:
         '[JS Fwdays Europe](https://fwdays.com/en/event/javascript-fwdays-2023)'
       date: 2023-05-18
+      recording: https://www.youtube.com/watch?v=amflVh0CZ78&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
     - event: '[UtahJS Conf 2023](https://utahjs.com/conference)'
       date: 2023-09-15
+      recording: https://www.youtube.com/watch?v=Zo9zSwrMARE&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
   tags:
     - caching
     - remix
@@ -49,14 +236,48 @@
     solution. We'll also explore different approaches and their associated
     trade-offs. We'll cover a ton of ground here. This one's gonna be fun!
 
-- title: Remix Conf Keynote
+- title: The Epic Stack
+  resources:
+    - '[slides](https://slides.com/kentcdodds/the-epic-stack)'
   deliveries:
     - event: '[Remix Conf 2023](https://remix.run/conf/2023)'
       date: 2023-05-11
+      recording: https://www.youtube.com/watch?v=yMK5SVRASxM&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+    - event: '[React Summit US](https://reactsummit.us/)'
+      date: 2023-11-13
+      recording: https://www.youtube.com/watch?v=OrF8FZrrayE&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+    - event: '[React Live](https://reactlive.nl/)'
+      date: 2023-09-29
+      recording: https://www.youtube.com/watch?v=3IJTm1uROOc&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+    - event: '[DevsNorte](https://www.youtube.com/@DevsNorte)'
+      date: 2023-08-26
+      recording: https://www.youtube.com/watch?v=sr4xC7T4r08&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+    - event: '[EpicWeb.dev special recording](https://www.epicweb.dev/talks)'
+      date: 2021-10-24
+      recording: https://www.epicweb.dev/talks/the-epic-stack
   tags:
     - keynote
+    - web
+    - remix
   description: >-
-    This talk will be announced soon!
+    Modern web development is fantastic. There are so many great tools
+    available!
+
+
+    Modern web development is exhausting. There are so many great tools
+    available!
+
+
+    Each of these sentiments is true. What's great is that most of the time,
+    it's hard to make a choice that is wrong. Seriously. The trade-offs of most
+    of the frameworks and tools you could use to build your application fit
+    within the constraints of the vast majority of apps.
+
+
+    Despite this, engineers consistently struggle with analysis paralysis.
+
+
+    Let's talk about this, and a solution I am working on for it.
 
 - title: Full Stack Components
   deliveries:
@@ -89,6 +310,7 @@
     - '[slides and demo](https://github.com/kentcdodds/the-webs-next-transition)'
   deliveries:
     - event: '[React India](https://www.reactindia.io)'
+      recording: 'https://www.youtube.com/watch?v=AVSizZxecXc&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf'
       date: 2022-09-23
     - event: '[infoShare](https://infoshare.pl/)'
       date: 2022-10-06
@@ -104,8 +326,10 @@
       date: 2023-03-27
     - event: '[React Miami 2023](https://reactmiami.com/)'
       date: 2023-04-20
+      recording: 'https://www.youtube.com/watch?v=Ie7SJEzPtPo&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf'
     - event: '[React Rally 2023](https://reactrally.com/)'
       date: 2023-08-17
+      recording: 'https://www.youtube.com/watch?v=VXR-994OkCM&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf'
   tags:
     - keynote
     - remix
@@ -178,8 +402,13 @@
       recording: https://www.youtube.com/watch?v=kTg98AcjQN4&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
     - event: '[Agent Conf](https://www.alpine-conferences.com/agent-conf-2023)'
       date: 2023-02-23
+      recording: https://www.youtube.com/watch?v=yyF00dOqxic&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
     - event: '[CityJS Conf London](https://london.cityjsconf.org/)'
       date: 2023-03-31
+      recording: https://www.youtube.com/watch?v=HlQxQsVvxT0&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
+    - event: '[GofiGeeks](https://www.meetup.com/gofigeeks/events/293401323/)'
+      date: 2023-05-29
+      recording: https://www.youtube.com/watch?v=HxdmGOAGH80&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
   tags:
     - keynote
     - remix
@@ -451,6 +680,9 @@
     - career
     - software
   deliveries:
+    - event: '[EpicWeb.dev special recording](https://www.epicweb.dev/talks)'
+      date: 2021-11-01
+      recording: https://www.epicweb.dev/talks/dont-solve-problems-eliminate-them
     - event: '[Shift Dev Conf 2021](https://shift.infobip.com/)'
       date: 2021-09-07
       recording: https://www.youtube.com/watch?v=EETYrR8TOoc&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
@@ -496,11 +728,11 @@
       recording: https://www.youtube.com/watch?v=sVMv3H7x8ew&list=PLV5CVI1eNcJgNqzNwcs4UKrlJdhfDjshf
   description: >-
     This should be a fun one, as Kent C. Dodds
-    ([@kentcdodds](https://twitter.com/kentcdodds)) is joining us to talk us
-    about Testing Library, and to give us a live demo. You should bring fun
-    questions, like, how did you come up with the name Testing Library? Maybe
-    bring some real questions too, as Testing Library is a pretty powerful
-    library you're probably using in production.
+    ([@kentcdodds](https://x.com/kentcdodds)) is joining us to talk us about
+    Testing Library, and to give us a live demo. You should bring fun questions,
+    like, how did you come up with the name Testing Library? Maybe bring some
+    real questions too, as Testing Library is a pretty powerful library you're
+    probably using in production.
 
 - title: Managing State Management
   resources:
@@ -552,9 +784,6 @@
     need it.
 
 - title: Building the Open Source Community We Want
-  resources:
-    - "[slides](https://drive.google.com/open?id=1-kpw_RlWNjzGcV4E69KlsOktbCru6\
-      LFx)"
   tags:
     - open source
   deliveries:
@@ -676,9 +905,8 @@
     foundational fundamentals. To strip away all abstraction until what we're
     left with is the bare bones. [The better you understand an abstraction, the
     more effective you will be at using
-    it.](https://twitter.com/kentcdodds/status/1074724545003581440) In this
-    talk, we'll get more effective at using React Hooks, React Suspense, and
-    JSX.
+    it.](https://x.com/kentcdodds/status/1074724545003581440) In this talk,
+    we'll get more effective at using React Hooks, React Suspense, and JSX.
 
 - title: LIVE! Learn React Hooks with Kent C. Dodds
   resources:
@@ -1315,7 +1543,7 @@
 - title: Learning JavaScript and Staying Marketable
   resources:
     - '[slides](http://slides.com/kentcdodds/learning-javascript)'
-    - '[tweet](https://twitter.com/ngnebraska/status/669319695015673856)'
+    - '[tweet](https://x.com/ngnebraska/status/669319695015673856)'
   tags:
     - soft skills
   deliveries:

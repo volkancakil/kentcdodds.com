@@ -156,9 +156,6 @@ npm run test:e2e:dev
 npm run test:e2e:run
 ```
 
-Jest runs on changed files as part of the husky git commit hook. Playwright runs
-only on CI.
-
 ## Running static tests (Formatting/Linting/Typing)
 
 Everything's set up with TypeScript/Prettier/ESLint. These should all run on
@@ -176,10 +173,8 @@ plugins you have so it should work as you working as well.
 
 ## Styles
 
-We use Tailwind for our styles. That's all configured in the
-`tailwind.config.js` file. We use the jit feature. The source files are in
-`styles` and they build to the `app/styles` directory where our app picks them
-up from there.
+We use Tailwind and PostCSS for our styles. That's all configured in the
+`tailwind.config.js` and `postcss.config.js` files.
 
 ## Database
 
@@ -227,14 +222,6 @@ things go wrong, this is what you do. First, backup the database, then scale
 down to a single region (one that's a primary candidate):
 
 ```sh
-fly vol list
-# delete all but one in a primary candidate instance
-fly vol delete <id>
-```
-
-Then scale down:
-
-```sh
 fly scale count 1
 ```
 
@@ -278,23 +265,53 @@ fly vol delete {id}
 fly scale count 1
 ```
 
+Copy the sqlite database and the cache database to `/data/litefs-disabled`:
+
+```sh
+fly ssh console -C bash
+
+cp /data/litefs/dbs/sqlite.db/database /data/litefs-disabled/sqlite.db
+cp /data/litefs/dbs/cache.db/database /data/litefs-disabled/cache.db
+```
+
 Update the Dockerfile:
 
 ```Dockerfile
 # TODO: enable litefs
 # ENV LITEFS_DIR="/litefs"
-ENV LITEFS_DIR="/data"
+ENV LITEFS_DIR="/data/litefs-disabled"
 
 ...
 
-# prepare for litefs
+# TODO: enable litefs proxy
+# ENV PORT="8081"
+ENV PORT="8080"
+
+...
+
 # TODO: enable litefs
-# COPY --from=flyio/litefs:sha-7e5287a /usr/local/bin/litefs /usr/local/bin/litefs
+# COPY --from=flyio/litefs:0.5.10 /usr/local/bin/litefs /usr/local/bin/litefs
 # ADD other/litefs.yml /etc/litefs.yml
 # RUN mkdir -p /data ${LITEFS_DIR}
 
-# CMD ["litefs", "mount", "--", "node", "./other/start.js"]
-CMD ["node", "./other/start.js"]
+# CMD ["litefs", "mount"]
+CMD ["npm", "start"]
+```
+
+> NOTE: this will **not** run migrations or setup the swap file like it does in
+> the current startup process. But hopefully what you're doing is temporary
+> anyway.
+
+And disable the litefs proxy healthcheck in `fly.toml`:
+
+```toml
+# TODO: enable litefs proxy
+#   [[services.http_checks]]
+#     grace_period = "10s"
+#     interval = "30s"
+#     method = "GET"
+#     timeout = "5s"
+#     path = "/litefs/health"
 ```
 
 Then push that to fly.

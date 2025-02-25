@@ -9,8 +9,8 @@ node_modules/
 /coverage
 tsconfig.tsbuildinfo
 /prisma/sqlite.db
+/prisma/sqlite.db-journal
 
-/app/styles/**/*.css
 other/postcss.ignored
 
 *.local.*
@@ -26,3 +26,5 @@ other/postcss.ignored
 *.bkp.*
 
 *.heapsnapshot
+
+*.db-journal

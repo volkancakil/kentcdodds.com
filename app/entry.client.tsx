@@ -1,20 +1,19 @@
-import './bootstrap.client'
+import { RemixBrowser } from '@remix-run/react'
 import * as React from 'react'
-import {hydrateRoot} from 'react-dom/client'
-import {RemixBrowser} from '@remix-run/react'
-import {handleDarkAndLightModeEls} from './utils/theme-provider'
+import { hydrateRoot } from 'react-dom/client'
 
-// fixup stuff before hydration
-function hydrate() {
-  handleDarkAndLightModeEls()
-  React.startTransition(() => {
-    hydrateRoot(document, <RemixBrowser />)
-  })
+if (ENV.MODE === 'production' && ENV.SENTRY_DSN) {
+	void import('./utils/monitoring.client.tsx').then(({ init }) => init())
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+function hydrate() {
+	React.startTransition(() => {
+		hydrateRoot(document, <RemixBrowser />)
+	})
+}
+
 if (window.requestIdleCallback) {
-  window.requestIdleCallback(hydrate)
+	window.requestIdleCallback(hydrate)
 } else {
-  window.setTimeout(hydrate, 1)
+	window.setTimeout(hydrate, 1)
 }

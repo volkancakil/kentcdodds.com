@@ -18,9 +18,13 @@ translations:
     author:
       name: Allan Ramos
       link: https://www.linkedin.com/in/allangabrielrds/
+  - language: فارسی
+    link: https://amirsalehi.ir/blog/useeffect-vs-uselayouteffect/
+    author:
+      name: Amir Salehi
+      link: https://amirsalehi.ir/
 bannerCloudinaryId: unsplash/photo-1474718723952-48d2a016108f
-bannerCredit:
-  Photo by [Mohamed Nohassi](https://unsplash.com/photos/sNYSV3t2w58)
+bannerCredit: Photo by [Mohamed Nohassi](https://unsplash.com/photos/sNYSV3t2w58)
 ---
 
 Both of these can be used to do basically the same thing, but they have slightly
@@ -75,12 +79,12 @@ sure it's up-to-date before any other code runs. For example:
 ```js
 const ref = React.useRef()
 React.useEffect(() => {
-  ref.current = 'some value'
+	ref.current = 'some value'
 })
 
 // then, later in another hook or something
 React.useLayoutEffect(() => {
-  console.log(ref.current) // <-- this logs an old value because this runs first!
+	console.log(ref.current) // <-- this logs an old value because this runs first!
 })
 ```
 

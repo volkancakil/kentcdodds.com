@@ -26,6 +26,11 @@ translations:
     author:
       name: Sebastián González
       link: https://www.sebastiangon11.com
+  - language: Polski
+    link: https://marcinparda.vercel.app/blog/odwrocenie-zaleznosci
+    author:
+      name: Marcin Parda
+      link: https://github.com/MarcinParda
 bannerCloudinaryId: unsplash/photo-1559250591-e2e54b0d9557
 bannerCredit: Photo by [Jasper Garratt](https://unsplash.com/photos/CL96u03iK_Y)
 ---
@@ -107,14 +112,14 @@ First, here's a super contrived example:
 ```js
 // let's pretend that Array.prototype.filter does not exist
 function filter(array) {
-  let newArray = []
-  for (let index = 0; index < array.length; index++) {
-    const element = array[index]
-    if (element !== null && element !== undefined) {
-      newArray[newArray.length] = element
-    }
-  }
-  return newArray
+	let newArray = []
+	for (let index = 0; index < array.length; index++) {
+		const element = array[index]
+		if (element !== null && element !== undefined) {
+			newArray[newArray.length] = element
+		}
+	}
+	return newArray
 }
 
 // use case:
@@ -130,49 +135,49 @@ support those new use cases:
 ```js
 // let's pretend that Array.prototype.filter does not exist
 function filter(
-  array,
-  {
-    filterNull = true,
-    filterUndefined = true,
-    filterZero = false,
-    filterEmptyString = false,
-  } = {},
+	array,
+	{
+		filterNull = true,
+		filterUndefined = true,
+		filterZero = false,
+		filterEmptyString = false,
+	} = {},
 ) {
-  let newArray = []
-  for (let index = 0; index < array.length; index++) {
-    const element = array[index]
-    if (
-      (filterNull && element === null) ||
-      (filterUndefined && element === undefined) ||
-      (filterZero && element === 0) ||
-      (filterEmptyString && element === '')
-    ) {
-      continue
-    }
+	let newArray = []
+	for (let index = 0; index < array.length; index++) {
+		const element = array[index]
+		if (
+			(filterNull && element === null) ||
+			(filterUndefined && element === undefined) ||
+			(filterZero && element === 0) ||
+			(filterEmptyString && element === '')
+		) {
+			continue
+		}
 
-    newArray[newArray.length] = element
-  }
-  return newArray
+		newArray[newArray.length] = element
+	}
+	return newArray
 }
 
 filter([0, 1, undefined, 2, null, 3, 'four', ''])
 // [0, 1, 2, 3, 'four', '']
 
-filter([0, 1, undefined, 2, null, 3, 'four', ''], {filterNull: false})
+filter([0, 1, undefined, 2, null, 3, 'four', ''], { filterNull: false })
 // [0, 1, 2, null, 3, 'four', '']
 
-filter([0, 1, undefined, 2, null, 3, 'four', ''], {filterUndefined: false})
+filter([0, 1, undefined, 2, null, 3, 'four', ''], { filterUndefined: false })
 // [0, 1, 2, undefined, 3, 'four', '']
 
-filter([0, 1, undefined, 2, null, 3, 'four', ''], {filterZero: true})
+filter([0, 1, undefined, 2, null, 3, 'four', ''], { filterZero: true })
 // [1, 2, 3, 'four', '']
 
-filter([0, 1, undefined, 2, null, 3, 'four', ''], {filterEmptyString: true})
+filter([0, 1, undefined, 2, null, 3, 'four', ''], { filterEmptyString: true })
 // [0, 1, 2, 3, 'four']
 ```
 
 Alright, so we literally only have six use cases that our app cares about, but
-we actually support any combination of these features which is 25 (if I did my
+we actually support any combination of these features which is 16 (if I did my
 math right).
 
 And this is a pretty simple abstraction in general. I'm sure it could be
@@ -195,37 +200,37 @@ apply inversion of control to support all these use cases:
 ```js
 // let's pretend that Array.prototype.filter does not exist
 function filter(array, filterFn) {
-  let newArray = []
-  for (let index = 0; index < array.length; index++) {
-    const element = array[index]
-    if (filterFn(element)) {
-      newArray[newArray.length] = element
-    }
-  }
-  return newArray
+	let newArray = []
+	for (let index = 0; index < array.length; index++) {
+		const element = array[index]
+		if (filterFn(element)) {
+			newArray[newArray.length] = element
+		}
+	}
+	return newArray
 }
 
 filter(
-  [0, 1, undefined, 2, null, 3, 'four', ''],
-  el => el !== null && el !== undefined,
+	[0, 1, undefined, 2, null, 3, 'four', ''],
+	(el) => el !== null && el !== undefined,
 )
 // [0, 1, 2, 3, 'four', '']
 
-filter([0, 1, undefined, 2, null, 3, 'four', ''], el => el !== undefined)
+filter([0, 1, undefined, 2, null, 3, 'four', ''], (el) => el !== undefined)
 // [0, 1, 2, null, 3, 'four', '']
 
-filter([0, 1, undefined, 2, null, 3, 'four', ''], el => el !== null)
+filter([0, 1, undefined, 2, null, 3, 'four', ''], (el) => el !== null)
 // [0, 1, 2, undefined, 3, 'four', '']
 
 filter(
-  [0, 1, undefined, 2, null, 3, 'four', ''],
-  el => el !== undefined && el !== null && el !== 0,
+	[0, 1, undefined, 2, null, 3, 'four', ''],
+	(el) => el !== undefined && el !== null && el !== 0,
 )
 // [1, 2, 3, 'four', '']
 
 filter(
-  [0, 1, undefined, 2, null, 3, 'four', ''],
-  el => el !== undefined && el !== null && el !== '',
+	[0, 1, undefined, 2, null, 3, 'four', ''],
+	(el) => el !== undefined && el !== null && el !== '',
 )
 // [0, 1, 2, 3, 'four']
 ```
@@ -241,16 +246,16 @@ because we've inverted control, we can now support much more unique use cases:
 
 ```js
 filter(
-  [
-    {name: 'dog', legs: 4, mammal: true},
-    {name: 'dolphin', legs: 0, mammal: true},
-    {name: 'eagle', legs: 2, mammal: false},
-    {name: 'elephant', legs: 4, mammal: true},
-    {name: 'robin', legs: 2, mammal: false},
-    {name: 'cat', legs: 4, mammal: true},
-    {name: 'salmon', legs: 0, mammal: false},
-  ],
-  animal => animal.legs === 0,
+	[
+		{ name: 'dog', legs: 4, mammal: true },
+		{ name: 'dolphin', legs: 0, mammal: true },
+		{ name: 'eagle', legs: 2, mammal: false },
+		{ name: 'elephant', legs: 4, mammal: true },
+		{ name: 'robin', legs: 2, mammal: false },
+		{ name: 'cat', legs: 4, mammal: true },
+		{ name: 'salmon', legs: 0, mammal: false },
+	],
+	(animal) => animal.legs === 0,
 )
 // [
 //   {name: 'dolphin', legs: 0, mammal: true},
@@ -273,8 +278,8 @@ filter([0, 1, undefined, 2, null, 3, 'four', ''])
 
 // after
 filter(
-  [0, 1, undefined, 2, null, 3, 'four', ''],
-  el => el !== null && el !== undefined,
+	[0, 1, undefined, 2, null, 3, 'four', ''],
+	(el) => el !== null && el !== undefined,
 )
 ```
 
@@ -284,24 +289,24 @@ it's typically pretty trivial to do so. For example:
 
 ```js
 function filterWithOptions(
-  array,
-  {
-    filterNull = true,
-    filterUndefined = true,
-    filterZero = false,
-    filterEmptyString = false,
-  } = {},
+	array,
+	{
+		filterNull = true,
+		filterUndefined = true,
+		filterZero = false,
+		filterEmptyString = false,
+	} = {},
 ) {
-  return filter(
-    array,
-    element =>
-      !(
-        (filterNull && element === null) ||
-        (filterUndefined && element === undefined) ||
-        (filterZero && element === 0) ||
-        (filterEmptyString && element === '')
-      ),
-  )
+	return filter(
+		array,
+		(element) =>
+			!(
+				(filterNull && element === null) ||
+				(filterUndefined && element === undefined) ||
+				(filterZero && element === 0) ||
+				(filterEmptyString && element === '')
+			),
+	)
 }
 ```
 
@@ -318,20 +323,20 @@ Oh, and just for fun:
 
 ```js
 function filterByLegCount(array, legCount) {
-  return filter(array, animal => animal.legs === legCount)
+	return filter(array, (animal) => animal.legs === legCount)
 }
 
 filterByLegCount(
-  [
-    {name: 'dog', legs: 4, mammal: true},
-    {name: 'dolphin', legs: 0, mammal: true},
-    {name: 'eagle', legs: 2, mammal: false},
-    {name: 'elephant', legs: 4, mammal: true},
-    {name: 'robin', legs: 2, mammal: false},
-    {name: 'cat', legs: 4, mammal: true},
-    {name: 'salmon', legs: 0, mammal: false},
-  ],
-  0,
+	[
+		{ name: 'dog', legs: 4, mammal: true },
+		{ name: 'dolphin', legs: 0, mammal: true },
+		{ name: 'eagle', legs: 2, mammal: false },
+		{ name: 'elephant', legs: 4, mammal: true },
+		{ name: 'robin', legs: 2, mammal: false },
+		{ name: 'cat', legs: 4, mammal: true },
+		{ name: 'salmon', legs: 0, mammal: false },
+	],
+	0,
 )
 // [
 //   {name: 'dolphin', legs: 0, mammal: true},
@@ -366,20 +371,20 @@ component is to create props for each of these things:
 
 ```tsx
 function App() {
-  return (
-    <Menu
-      buttonContents={
-        <>
-          Actions <span aria-hidden>▾</span>
-        </>
-      }
-      items={[
-        {contents: 'Download', onSelect: () => alert('Download')},
-        {contents: 'Create a Copy', onSelect: () => alert('Create a Copy')},
-        {contents: 'Delete', onSelect: () => alert('Delete')},
-      ]}
-    />
-  )
+	return (
+		<Menu
+			buttonContents={
+				<>
+					Actions <span aria-hidden>▾</span>
+				</>
+			}
+			items={[
+				{ contents: 'Download', onSelect: () => alert('Download') },
+				{ contents: 'Create a Copy', onSelect: () => alert('Create a Copy') },
+				{ contents: 'Delete', onSelect: () => alert('Delete') },
+			]}
+		/>
+	)
 }
 ```
 
@@ -398,18 +403,18 @@ React's greatest strengths of composibility:
 
 ```tsx
 function App() {
-  return (
-    <Menu>
-      <MenuButton>
-        Actions <span aria-hidden>▾</span>
-      </MenuButton>
-      <MenuList>
-        <MenuItem onSelect={() => alert('Download')}>Download</MenuItem>
-        <MenuItem onSelect={() => alert('Copy')}>Create a Copy</MenuItem>
-        <MenuItem onSelect={() => alert('Delete')}>Delete</MenuItem>
-      </MenuList>
-    </Menu>
-  )
+	return (
+		<Menu>
+			<MenuButton>
+				Actions <span aria-hidden>▾</span>
+			</MenuButton>
+			<MenuList>
+				<MenuItem onSelect={() => alert('Download')}>Download</MenuItem>
+				<MenuItem onSelect={() => alert('Copy')}>Create a Copy</MenuItem>
+				<MenuItem onSelect={() => alert('Delete')}>Delete</MenuItem>
+			</MenuList>
+		</Menu>
+	)
 }
 ```
 
@@ -423,7 +428,7 @@ tests to add. Big win for everyone.
 
 You can read more about this pattern
 [on my blog](/blog/compound-components-with-react-hooks). Hat tip to
-[Ryan Florence](https://twitter.com/ryanflorence) who taught me this pattern.
+[Ryan Florence](https://x.com/ryanflorence) who taught me this pattern.
 
 ### State Reducer
 
@@ -437,7 +442,7 @@ wanted the menu to remain open even after an element was selected.
 In `Downshift` we had logic that said it should close when a selection is made.
 The person needing the feature suggested adding a prop called
 `closeOnSelection`. I pushed back on that because I've been down this
-[apropcalypse](https://twitter.com/gurlcode/status/1002110517094371328) road
+[apropcalypse](https://x.com/gurlcode/status/1002110517094371328) road
 before and I wanted to avoid that.
 
 So instead, I came up with an API for folks to control how the state change
@@ -450,19 +455,19 @@ the menu after the user selects an item:
 
 ```js
 function stateReducer(state, changes) {
-  switch (changes.type) {
-    case Downshift.stateChangeTypes.keyDownEnter:
-    case Downshift.stateChangeTypes.clickItem:
-      return {
-        ...changes,
-        // we're fine with any changes Downshift wants to make
-        // except we're going to leave isOpen and highlightedIndex as-is.
-        isOpen: state.isOpen,
-        highlightedIndex: state.highlightedIndex,
-      }
-    default:
-      return changes
-  }
+	switch (changes.type) {
+		case Downshift.stateChangeTypes.keyDownEnter:
+		case Downshift.stateChangeTypes.clickItem:
+			return {
+				...changes,
+				// we're fine with any changes Downshift wants to make
+				// except we're going to leave isOpen and highlightedIndex as-is.
+				isOpen: state.isOpen,
+				highlightedIndex: state.highlightedIndex,
+			}
+		default:
+			return changes
+	}
 }
 
 // then when you render the component
@@ -492,14 +497,14 @@ example really quick:
 ```js
 // let's pretend that Array.prototype.filter does not exist
 function filter(array) {
-  let newArray = []
-  for (let index = 0; index < array.length; index++) {
-    const element = array[index]
-    if (element !== null && element !== undefined) {
-      newArray[newArray.length] = element
-    }
-  }
-  return newArray
+	let newArray = []
+	for (let index = 0; index < array.length; index++) {
+		const element = array[index]
+		if (element !== null && element !== undefined) {
+			newArray[newArray.length] = element
+		}
+	}
+	return newArray
 }
 
 // use case:

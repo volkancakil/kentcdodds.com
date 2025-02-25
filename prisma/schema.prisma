@@ -18,18 +18,21 @@ generator client {
 }
 
 model User {
-  id           String     @id @default(uuid())
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  email        String     @unique(map: "User.email_unique")
-  firstName    String
-  discordId    String?
-  convertKitId String?
-  role         String     @default("MEMBER")
-  team         String
-  calls        Call[]
-  sessions     Session[]
-  postReads    PostRead[]
+  id        String     @id @default(uuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  email     String     @unique(map: "User.email_unique")
+  firstName String
+  discordId String?
+  kitId     String?
+  role      String     @default("MEMBER")
+  team      String
+  passkeys  Passkey[]
+  calls     Call[]
+  sessions  Session[]
+  postReads PostRead[]
+
+  @@index([team])
 }
 
 model Session {
@@ -60,6 +63,25 @@ model PostRead {
   clientId  String?
   postSlug  String
 
+  @@index([userId, postSlug])
+  @@index([clientId, postSlug])
+  @@index([postSlug, createdAt])
+  @@index([createdAt, userId])
+}
+
+model Passkey {
+  id             String   @id
+  aaguid         String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  publicKey      Bytes
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String
+  webauthnUserId String
+  counter        BigInt
+  deviceType     String // 'singleDevice' or 'multiDevice'
+  backedUp       Boolean
+  transports     String? // Stored as comma-separated values
+
   @@index(userId)
-  @@index(clientId)
 }
